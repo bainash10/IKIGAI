@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ikigai Result</title>
+</head>
+<body>
+    <h1>Your Ikigai Diagram</h1>
+    <img src="{{ url_for('static', filename='uploads/' + image_path.split('/')[-1]) }}" alt="Ikigai Diagram">
+
+    <a href="{{ url_for('download', filename=image_path.split('/')[-1]) }}">Download Ikigai Diagram</a>
+</body>
+</html>
