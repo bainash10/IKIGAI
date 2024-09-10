@@ -1,0 +1,62 @@
+from flask import Flask, render_template, request, redirect, url_for, send_file
+from ikigai_chart import generate_ikigai_diagram
+import os
+
+app = Flask(__name__)
+
+# Set a folder for storing generated images
+UPLOAD_FOLDER = os.path.join('uploads')
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Route for the input form
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Collect user input
+        what_you_love = request.form['what_you_love'].split(',')
+        what_the_world_needs = request.form['what_the_world_needs'].split(',')
+        what_you_can_be_paid_for = request.form['what_you_can_be_paid_for'].split(',')
+        what_you_are_good_at = request.form['what_you_are_good_at'].split(',')
+
+        # Save input to session or pass it to next page
+        ikigai_data = {
+            'what_you_love': what_you_love,
+            'what_the_world_needs': what_the_world_needs,
+            'what_you_can_be_paid_for': what_you_can_be_paid_for,
+            'what_you_are_good_at': what_you_are_good_at
+        }
+
+        return render_template('review.html', data=ikigai_data)
+
+    return render_template('index.html')
+
+# Route to review answers and edit them
+@app.route('/review', methods=['POST'])
+def review():
+    if request.form['action'] == 'edit':
+        return redirect(url_for('index'))
+    elif request.form['action'] == 'generate':
+        # Generate Ikigai diagram
+        ikigai_data = {
+            'what_you_love': request.form['what_you_love'].split(','),
+            'what_the_world_needs': request.form['what_the_world_needs'].split(','),
+            'what_you_can_be_paid_for': request.form['what_you_can_be_paid_for'].split(','),
+            'what_you_are_good_at': request.form['what_you_are_good_at'].split(',')
+        }
+
+        # Call the function to generate the chart
+        image_path = generate_ikigai_diagram(ikigai_data, app.config['UPLOAD_FOLDER'])
+
+        return render_template('result.html', image_path=image_path)
+
+# Route to download the generated image
+@app.route('/download/<filename>')
+def download(filename):
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    return send_file(file_path, as_attachment=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)
