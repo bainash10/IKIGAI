@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Your Ikigai</title>
+</head>
+<body>
+    <h1>Review Your Responses</h1>
+    <form action="/review" method="POST">
+        <label>What You Love:</label>
+        <input type="text" name="what_you_love" value="{{ ','.join(data['what_you_love']) }}">
+        
+        <label>What the World Needs:</label>
+        <input type="text" name="what_the_world_needs" value="{{ ','.join(data['what_the_world_needs']) }}">
+        
+        <label>What You Can Be Paid For:</label>
+        <input type="text" name="what_you_can_be_paid_for" value="{{ ','.join(data['what_you_can_be_paid_for']) }}">
+
+        <label>What You Are Good At:</label>
+        <input type="text" name="what_you_are_good_at" value="{{ ','.join(data['what_you_are_good_at']) }}">
+
+        <button type="submit" name="action" value="edit">Edit</button>
+        <button type="submit" name="action" value="generate">Generate Ikigai</button>
+    </form>
+</body>
+</html>
