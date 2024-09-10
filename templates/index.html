@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>IKIGAI - Input Form</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Find Your Ikigai</h1>
-    <form action="/" method="POST">
-        <label for="what_you_love">What You Love:</label>
-        <input type="text" name="what_you_love" placeholder="Separate by commas" required>
-        
-        <label for="what_the_world_needs">What the World Needs:</label>
-        <input type="text" name="what_the_world_needs" placeholder="Separate by commas" required>
-
-        <label for="what_you_can_be_paid_for">What You Can Be Paid For:</label>
-        <input type="text" name="what_you_can_be_paid_for" placeholder="Separate by commas" required>
-
-        <label for="what_you_are_good_at">What You Are Good At:</label>
-        <input type="text" name="what_you_are_good_at" placeholder="Separate by commas" required>
-
-        <button type="submit">Next</button>
-    </form>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Find Your Ikigai</h1>
+        <form action="/" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <label for="what_you_love" class="form-label">What You Love:</label>
+                <input type="text" class="form-control" name="what_you_love" placeholder="Separate by commas" required>
+            </div>
+            <div class="col-md-6">
+                <label for="what_the_world_needs" class="form-label">What the World Needs:</label>
+                <input type="text" class="form-control" name="what_the_world_needs" placeholder="Separate by commas" required>
+            </div>
+            <div class="col-md-6">
+                <label for="what_you_can_be_paid_for" class="form-label">What You Can Be Paid For:</label>
+                <input type="text" class="form-control" name="what_you_can_be_paid_for" placeholder="Separate by commas" required>
+            </div>
+            <div class="col-md-6">
+                <label for="what_you_are_good_at" class="form-label">What You Are Good At:</label>
+                <input type="text" class="form-control" name="what_you_are_good_at" placeholder="Separate by commas" required>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
