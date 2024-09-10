@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IKIGAI - Input Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Find Your Ikigai</h1>
+    <form action="/" method="POST">
+        <label for="what_you_love">What You Love:</label>
+        <input type="text" name="what_you_love" placeholder="Separate by commas" required>
+        
+        <label for="what_the_world_needs">What the World Needs:</label>
+        <input type="text" name="what_the_world_needs" placeholder="Separate by commas" required>
+
+        <label for="what_you_can_be_paid_for">What You Can Be Paid For:</label>
+        <input type="text" name="what_you_can_be_paid_for" placeholder="Separate by commas" required>
+
+        <label for="what_you_are_good_at">What You Are Good At:</label>
+        <input type="text" name="what_you_are_good_at" placeholder="Separate by commas" required>
+
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>
